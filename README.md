@@ -21,29 +21,6 @@ It's designed for TTRPG notes, worldbuilding, investigative fiction, and anyone 
 
 ---
 
-## Preview
-
-> [!NOTE]
-> Add a screenshot at `docs/preview.png` for the repo front page. Until then, the sample below is rendered by GitHub's own markdown engine — inside Obsidian with the snippet enabled, it looks very different (and much more classified).
-
-**Sample: Agent Roster**
-
-| AGENT ID | HANDLE   | CLEARANCE | STATUS     |
-|----------|----------|-----------|------------|
-| BCA-001  | Ramirez  | 4         | ACTIVE     |
-| BCA-014  | Okafor   | 3         | REASSIGNED |
-| BCA-027  | Lindqvist| 5         | UNREACHABLE|
-
-**Sample: Callouts**
-
-> [!NOTE]
-> Inside Obsidian, four custom callout types render with stamps, borders, and in-universe icons: `classified`, `memo`, `stamp`, and `redacted`. On GitHub, the native `[!NOTE]` / `[!WARNING]` alerts are the closest approximation.
-
-> [!WARNING]
-> Contents of this vault are restricted to cleared personnel. Unauthorized access will be referred to Internal Affairs (Temporal Division).
-
----
-
 ## Installation
 
 1. Download [`bca-dossier.css`](bca-dossier.css) (use the **Raw** button and save the file).
@@ -55,40 +32,6 @@ It's designed for TTRPG notes, worldbuilding, investigative fiction, and anyone 
 4. (Optional) Open [`BCA Dossier Style Showcase.md`](BCA%20Dossier%20Style%20Showcase.md) inside your vault to see every styled element render live.
 
 ---
-
-## Usage
-
-### Callouts
-
-The snippet adds four Obsidian callout types. Use them like any standard callout:
-
-```markdown
-> [!classified] Operation Cold Harbor
-> Subject refuses to acknowledge the 1973 anomaly. Recommend sedation.
-
-> [!memo] Internal Memo — Section 7
-> Coffee budget approved. Decaf is not coffee. This is not negotiable.
-
-> [!stamp] APPROVED
-> Filed, sealed, and stamped by the Clerk of Records.
-
-> [!redacted]
-> ███████ ███ ██████ ████████ █████ ███ ███████ ████ ████.
-```
-
-### Redaction Bars
-
-Any inline highlight becomes a redaction bar that reveals its contents on hover or tap:
-
-```markdown
-The target is hiding in ==a small village outside Prague==.
-```
-
-### Suggested Tags
-
-- `#bca` — vault-wide snippet indicator
-- `#classified` — files requiring higher clearance
-- `#showcase` — style demonstration notes
 
 ### Fonts
 
