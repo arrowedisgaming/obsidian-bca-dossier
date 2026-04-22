@@ -1,0 +1,543 @@
+/* ============================================================
+  DOSSIER
+   Matches the aesthetic of the wonderful Bureau of Chronological Affairs
+   Daggerheart content <https://dngnclub.itch.io/bureau-of-chronological-affairs> 
+
+   Install:
+     1. Drop this file into <your vault>/.obsidian/snippets/
+     2. Settings → Appearance → CSS snippets → toggle ON
+     3. Tweak the variables in the :root block below to taste
+   ============================================================ */
+
+/* ---------- Web fonts (all free, Google Fonts) -------------- */
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Big+Shoulders+Display:wght@700;800;900&family=Oswald:wght@500;600;700&family=Share+Tech+Mono&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* ============================================================
+   VARIABLES — edit these first
+   ============================================================ */
+.theme-light {
+  /* paper + ink */
+  --bca-paper:        #E8D9B8;  /* warm cream page */
+  --bca-paper-edge:   #E8D9B8;  /* match paper — no sidebar darkening */
+  --bca-paper-deep:   #D9C79A;  /* form fields, stripes */
+  --bca-ink:          #0A0604;  /* body text — near-black, high contrast */
+  --bca-ink-muted:    #3A2A1A;
+  --bca-ink-faint:    #6A5A45;
+
+  /* accents */
+  --bca-red:          #8C0018;  /* signature BCA oxblood */
+  --bca-red-bright:   #A81422;  /* links, hover */
+  --bca-teal:         #2C6670;  /* secondary accent */
+  --bca-amber:        #C67612;  /* stamps, warnings */
+  --bca-redact:       #0F0F0F;  /* redaction bar black */
+}
+
+.theme-dark {
+  /* inverted — warm black "typewriter ribbon" */
+  --bca-paper:        #15100C;
+  --bca-paper-edge:   #15100C;  /* match paper — no sidebar darkening */
+  --bca-paper-deep:   #2A2017;
+  --bca-ink:          #F4E8CC;  /* brighter cream for high contrast */
+  --bca-ink-muted:    #C4B088;
+  --bca-ink-faint:    #8A7A60;
+
+  --bca-red:          #D63A3A;
+  --bca-red-bright:   #F05050;
+  --bca-teal:         #6FB5B8;
+  --bca-amber:        #E8A04C;
+  --bca-redact:       #050505;
+}
+
+/* ============================================================
+   CORE — map BCA vars onto Obsidian's vars
+   ============================================================ */
+.theme-light,
+.theme-dark {
+  /* fonts */
+  --font-text-theme:        'Erikas Buero', 'Special Elite', 'Courier Prime', 'Courier New', monospace;
+  --font-interface-theme:   'Erikas Buero', 'Oswald', system-ui, sans-serif;
+  --font-monospace-theme:   'Share Tech Mono', 'Courier Prime', 'Consolas', monospace;
+
+  /* backgrounds */
+  --background-primary:          var(--bca-paper);
+  --background-primary-alt:      var(--bca-paper-edge);
+  --background-secondary:        var(--bca-paper-edge);
+  --background-secondary-alt:    var(--bca-paper-deep);
+  --background-modifier-border:  var(--bca-ink-faint);
+  --background-modifier-hover:   color-mix(in srgb, var(--bca-red) 12%, transparent);
+
+  /* text */
+  --text-normal:       var(--bca-ink);
+  --text-muted:        var(--bca-ink-muted);
+  --text-faint:        var(--bca-ink-faint);
+  --text-accent:       var(--bca-red);
+  --text-accent-hover: var(--bca-red-bright);
+  --text-selection:    color-mix(in srgb, var(--bca-amber) 35%, transparent);
+
+  /* UI accents */
+  --interactive-accent:       var(--bca-red);
+  --interactive-accent-hover: var(--bca-red-bright);
+
+  /* reading width — dossier pages are narrow */
+  --file-line-width: 720px;
+
+  /* body text size/leading tuned for Special Elite */
+  --font-text-size: 17px;
+  --line-height-normal: 1.6;
+}
+
+/* ============================================================
+   HEADINGS — chunky condensed display like the PDF section heads
+   ============================================================ */
+.markdown-preview-view,
+.markdown-source-view.mod-cm6 {
+  --h1-font: 'Big Shoulders Display', 'Oswald', sans-serif;
+  --h1-weight: 900;
+  --h1-size: 2.6em;
+  --h1-color: var(--bca-red);
+  --h1-variant: small-caps;
+  --h1-line-height: 1;
+
+  --h2-font: 'Oswald', sans-serif;
+  --h2-weight: 700;
+  --h2-size: 1.6em;
+  --h2-color: var(--bca-ink);
+  --h2-variant: normal;
+
+  --h3-font: 'Oswald', sans-serif;
+  --h3-weight: 600;
+  --h3-size: 1.25em;
+  --h3-color: var(--bca-red);
+
+  --h4-font: 'Share Tech Mono', monospace;
+  --h4-weight: 400;
+  --h4-size: 1.05em;
+  --h4-color: var(--bca-ink);
+
+  --h5-font: 'Share Tech Mono', monospace;
+  --h5-weight: 400;
+  --h5-color: var(--bca-ink-muted);
+
+  --h6-font: 'Share Tech Mono', monospace;
+  --h6-color: var(--bca-ink-faint);
+}
+
+/* H1 — big condensed title block, always uppercase, tight tracking */
+.markdown-rendered h1,
+.cm-header-1 {
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  border-bottom: 3px double var(--bca-red);
+  padding-bottom: 0.15em;
+  margin-bottom: 0.5em;
+}
+
+/* H2 — underlined section heading, like "THE PITCH", "TONE & FEEL" */
+.markdown-rendered h2,
+.cm-header-2 {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--bca-red) !important;
+  border-bottom: 2px solid var(--bca-ink);
+  padding-bottom: 0.1em;
+  margin-top: 1.6em;
+}
+
+/* H3 — smaller uppercase with letter-spacing */
+.markdown-rendered h3,
+.cm-header-3 {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* H4–H6 — monospace, unstyled except color */
+.markdown-rendered h4,
+.markdown-rendered h5,
+.markdown-rendered h6 {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ============================================================
+   BODY — subtle paper feel, no pure black
+   ============================================================ */
+.markdown-rendered,
+.cm-content {
+  color: var(--bca-ink);
+  font-feature-settings: "liga" 0, "clig" 0; /* keep typewriter look */
+}
+
+/* Bold uses the heavier display face for punch */
+.markdown-rendered strong,
+.cm-strong {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  color: var(--bca-ink);
+  letter-spacing: 0.02em;
+}
+
+/* Italic uses Atkinson for readability — Special Elite italic is rough */
+.markdown-rendered em,
+.cm-em {
+  font-family: 'Atkinson Hyperlegible', serif;
+  font-style: italic;
+}
+
+/* Links — oxblood, underlined, no hover color flip */
+.markdown-rendered a,
+a.internal-link,
+a.external-link {
+  color: var(--bca-red) !important;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.markdown-rendered a:hover {
+  color: var(--bca-red-bright) !important;
+  background: color-mix(in srgb, var(--bca-amber) 20%, transparent);
+}
+
+/* ============================================================
+   BLOCKQUOTES — dossier callout card
+   ============================================================ */
+.markdown-rendered blockquote,
+.cm-blockquote {
+  background: var(--bca-paper-edge);
+  border-left: 4px solid var(--bca-red);
+  border-top: 1px solid var(--bca-ink-faint);
+  border-right: 1px solid var(--bca-ink-faint);
+  border-bottom: 1px solid var(--bca-ink-faint);
+  padding: 0.6em 1em;
+  font-style: normal;
+  color: var(--bca-ink);
+  position: relative;
+}
+
+/* ============================================================
+   HR — perforated form divider
+   ============================================================ */
+.markdown-rendered hr {
+  border: none;
+  height: 1px;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--bca-ink) 0 6px,
+    transparent 6px 12px
+  );
+  margin: 2em 0;
+}
+
+/* ============================================================
+   CODE + INLINE — OCR-A mono
+   ============================================================ */
+code, .cm-inline-code, pre code {
+  font-family: 'Share Tech Mono', monospace;
+  background: var(--bca-paper-deep);
+  color: var(--bca-ink);
+  border: 1px solid var(--bca-ink-faint);
+  border-radius: 0;
+  padding: 0 4px;
+}
+
+pre {
+  background: var(--bca-paper-edge) !important;
+  border: 1px solid var(--bca-ink-faint);
+  border-left: 3px solid var(--bca-red);
+  border-radius: 0;
+}
+
+/* ============================================================
+   HIGHLIGHT (==text==) — redaction bar
+   Click (or hover) to fully reveal the classified text.
+   ============================================================ */
+.markdown-rendered mark,
+.cm-highlight {
+  background: var(--bca-redact) !important;
+  color: var(--bca-redact) !important; /* text invisible — the bar IS the reveal */
+  padding: 0 4px;
+  border-radius: 0;
+  text-decoration: none;
+  user-select: text; /* still copyable */
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+/* Full reveal on hover AND active (click/tap) */
+.markdown-rendered mark:hover,
+.markdown-rendered mark:active,
+.markdown-rendered mark:focus,
+.cm-highlight:hover,
+.cm-highlight:active,
+.cm-highlight:focus {
+  background: transparent !important;
+  color: var(--bca-ink) !important;
+  outline: 1px dashed var(--bca-red);
+}
+
+/* ============================================================
+   CALLOUTS — use standard Obsidian callouts for in-universe tags
+   > [!classified]   red
+   > [!memo]         teal
+   > [!stamp]        amber
+   > [!redacted]     full black redaction
+   ============================================================ */
+.callout {
+  --callout-radius: 0;
+  border: 1px solid var(--bca-ink-faint);
+  font-family: var(--font-text-theme);
+}
+
+.callout[data-callout="classified"] {
+  --callout-color: 140, 0, 24;
+  --callout-icon: lucide-file-warning;
+  border-left: 6px solid var(--bca-red);
+  background: color-mix(in srgb, var(--bca-red) 8%, var(--bca-paper-edge));
+}
+.callout[data-callout="memo"] {
+  --callout-color: 44, 102, 112;
+  --callout-icon: lucide-file-text;
+  border-left: 6px solid var(--bca-teal);
+  background: color-mix(in srgb, var(--bca-teal) 10%, var(--bca-paper-edge));
+}
+.callout[data-callout="stamp"] {
+  --callout-color: 198, 118, 18;
+  --callout-icon: lucide-stamp;
+  border: 3px double var(--bca-amber);
+  background: var(--bca-paper);
+  color: var(--bca-amber);
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transform: rotate(-1.2deg);
+}
+.callout[data-callout="redacted"] {
+  --callout-color: 15, 15, 15;
+  background: var(--bca-redact);
+  color: var(--bca-redact);
+  border-color: var(--bca-redact);
+}
+.callout[data-callout="redacted"] .callout-title {
+  color: var(--bca-paper);
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* ============================================================
+   TABLES — form / dossier field feel
+   ============================================================ */
+.markdown-rendered table {
+  border: 2px solid var(--bca-ink);
+  border-collapse: collapse;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.95em;
+}
+.markdown-rendered th,
+.markdown-rendered thead th,
+.markdown-rendered th:nth-child(odd),
+.markdown-rendered th:nth-child(even) {
+  background: var(--bca-ink) !important;
+  color: var(--bca-paper) !important;
+  font-family: 'Oswald', sans-serif !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  border-bottom: 2px solid var(--bca-ink) !important;
+  padding: 0.4em 0.8em;
+}
+.markdown-rendered td {
+  color: var(--bca-ink) !important;
+  border: 1px solid var(--bca-ink-faint);
+  padding: 0.3em 0.8em;
+}
+.markdown-rendered tr:nth-child(even) td {
+  background: var(--bca-paper-deep);
+}
+.markdown-rendered tr:nth-child(odd) td {
+  background: var(--bca-paper);
+}
+
+/* ============================================================
+   TAGS — stamped label feel
+   ============================================================ */
+.tag, a.tag {
+  background: var(--bca-red) !important;
+  color: var(--bca-paper) !important;
+  border-radius: 0;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78em;
+  padding: 2px 6px;
+  border: 1px solid var(--bca-ink);
+}
+
+/* ============================================================
+   CHECKBOXES — form boxes
+   ============================================================ */
+input[type="checkbox"] {
+  accent-color: var(--bca-red);
+}
+
+/* ============================================================
+   SIDEBAR / TAB BAR / TITLEBAR — flat paper, no dark corners
+   Covers every Obsidian frame/chrome selector I know of.
+   ============================================================ */
+html,
+body,
+.app-container,
+.horizontal-main-container,
+.workspace,
+.workspace-ribbon,
+.workspace-ribbon.mod-left,
+.workspace-ribbon.mod-right,
+.workspace-tab-header-container,
+.workspace-tab-header-container-inner,
+.workspace-tab-container,
+.workspace-split.mod-left-split,
+.workspace-split.mod-right-split,
+.workspace-split.mod-horizontal,
+.workspace-split.mod-vertical,
+.titlebar,
+.titlebar-inner,
+.titlebar-text,
+.titlebar-button-container,
+.titlebar-button-container.mod-left,
+.titlebar-button-container.mod-right,
+.workspace-tab-header,
+.workspace-drawer-header,
+.sidebar-toggle-button,
+.status-bar,
+.mod-frameless .titlebar {
+  background: var(--bca-paper) !important;
+  background-color: var(--bca-paper) !important;
+}
+
+.workspace-tab-header.is-active {
+  background: var(--bca-paper) !important;
+  border-bottom: 3px solid var(--bca-red) !important;
+}
+
+/* ============================================================
+   TITLE BAR — dossier header strip
+   ============================================================ */
+.view-header {
+  border-bottom: 1px solid var(--bca-ink-faint);
+}
+.view-header-title {
+  font-family: 'Oswald', sans-serif !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--bca-ink) !important;
+}
+
+/* ============================================================
+   PAPER TEXTURE — fibrous grain via SVG turbulence
+   Applied to reading + editing views and the app background.
+   Adjust opacity via the alpha in feColorMatrix below.
+   ============================================================ */
+body,
+.workspace,
+.markdown-preview-view,
+.markdown-source-view .cm-scroller,
+.workspace-leaf-content {
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.15  0 0 0 0 0.10  0 0 0 0 0.05  0 0 0 0.22 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='900' height='900' viewBox='0 0 900 900'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.20  0 0 0 0 0.12  0 0 0 0 0.05  0 0 0 0.10 0'/></filter><rect width='100%25' height='100%25' filter='url(%23f)'/></svg>") !important;
+  background-size: 320px 320px, 900px 900px;
+  background-repeat: repeat, repeat;
+  background-blend-mode: multiply, multiply;
+}
+
+.theme-dark body,
+.theme-dark .markdown-preview-view,
+.theme-dark .markdown-source-view .cm-scroller,
+.theme-dark .workspace-leaf-content {
+  background-blend-mode: screen, screen;
+}
+
+/* ============================================================
+   COFFEE STAINS + MARGINALIA — sidebar decorations
+   Drawn as pseudo-element overlays ABOVE the file tree with
+   pointer-events:none so they stay visible but don't block
+   clicks. This is the only approach that survives Obsidian's
+   nested opaque containers.
+   ============================================================ */
+
+/* Sidebars need to be positioning contexts */
+.workspace-split.mod-left-split,
+.workspace-split.mod-right-split {
+  position: relative;
+}
+
+/* Left sidebar — big coffee ring near the bottom */
+.workspace-split.mod-left-split::before {
+  content: "";
+  position: absolute;
+  bottom: 60px;
+  left: 24px;
+  width: 150px;
+  height: 150px;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.45;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g transform='rotate(-12 100 100)'><ellipse cx='100' cy='100' rx='72' ry='68' fill='none' stroke='%235a2d0e' stroke-width='4' stroke-dasharray='180 40 90 30 60 20'/><ellipse cx='100' cy='100' rx='66' ry='62' fill='none' stroke='%235a2d0e' stroke-width='2' stroke-dasharray='50 15 120 25 80 40' opacity='0.7'/><ellipse cx='100' cy='100' rx='62' ry='58' fill='%235a2d0e' opacity='0.18'/></g></svg>");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* Left sidebar — smaller partial ring in the bottom-right corner */
+.workspace-split.mod-left-split::after {
+  content: "";
+  position: absolute;
+  bottom: 18px;
+  right: 16px;
+  width: 90px;
+  height: 90px;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g transform='rotate(22 100 100)'><path d='M 40 100 A 60 58 0 1 1 160 100' fill='none' stroke='%234a2608' stroke-width='5' stroke-dasharray='80 20 40 15 30 10'/><ellipse cx='100' cy='102' rx='55' ry='52' fill='%234a2608' opacity='0.15'/></g></svg>");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* Right sidebar — coffee ring near the bottom */
+.workspace-split.mod-right-split::before {
+  content: "";
+  position: absolute;
+  bottom: 180px;
+  right: 20px;
+  width: 120px;
+  height: 120px;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g transform='rotate(15 100 100)'><ellipse cx='100' cy='100' rx='68' ry='64' fill='none' stroke='%234a2608' stroke-width='4' stroke-dasharray='120 30 60 20 90 25'/><ellipse cx='100' cy='100' rx='62' ry='58' fill='none' stroke='%234a2608' stroke-width='2' stroke-dasharray='30 10 100 20' opacity='0.7'/><ellipse cx='100' cy='100' rx='58' ry='55' fill='%234a2608' opacity='0.15'/></g></svg>");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* Right sidebar — CLASSIFIED stamp near the bottom */
+.workspace-split.mod-right-split::after {
+  content: "";
+  position: absolute;
+  bottom: 40px;
+  left: 10%;
+  right: 10%;
+  height: 70px;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.55;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 120' preserveAspectRatio='xMidYMid meet'><g transform='rotate(-6 200 60)'><rect x='10' y='20' width='380' height='80' fill='none' stroke='%238C0018' stroke-width='4'/><rect x='18' y='28' width='364' height='64' fill='none' stroke='%238C0018' stroke-width='2'/><text x='200' y='80' text-anchor='middle' font-family='Impact, Oswald, sans-serif' font-weight='900' font-size='54' letter-spacing='8' fill='%238C0018'>CLASSIFIED</text></g></svg>");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+/* ============================================================
+   END
+   ============================================================ */

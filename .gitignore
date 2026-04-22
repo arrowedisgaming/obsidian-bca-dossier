@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Obsidian vault cruft (in case this folder ever lives inside a vault)
+.obsidian/
+.obsidian.vimrc
+.trash/
+
+# Editor swap / backup files
+*.swp
+*.swo
+*~
