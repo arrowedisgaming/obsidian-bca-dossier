@@ -286,6 +286,31 @@ pre {
   font-family: var(--font-text-theme);
 }
 
+/* Vertically center the icon glyph against the title text for all callouts. */
+.callout > .callout-title {
+  display: flex !important;
+  align-items: center !important;
+  line-height: 1 !important;
+}
+.callout > .callout-title > .callout-title-inner {
+  display: flex !important;
+  align-items: center !important;
+  line-height: 1 !important;
+}
+.callout > .callout-title > .callout-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  align-self: center !important;
+  line-height: 1 !important;
+  transform: translateY(-0.06em);
+}
+.callout > .callout-title > .callout-icon svg {
+  display: block !important;
+  width: 0.99em !important;
+  height: 0.99em !important;
+}
+
 .callout[data-callout="classified"] {
   --callout-color: 140, 0, 24;
   --callout-icon: lucide-file-warning;
