@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Callout titles now vertically center the icon glyph against the title
+  text across all callout types (`classified`, `memo`, `stamp`, `redacted`).
+- Removed the underline rules on H1 and H2. Both `border-bottom` and
+  `text-decoration` paint per visual line when the inline heading span
+  wraps in Live Preview, leading to underlines striking through every
+  line of a wrapped heading. The oxblood + Big Shoulders / Oswald
+  uppercase treatment carries the visual weight on its own.
+- Coffee stains redrawn as organic, irregular blobs using SVG turbulence +
+  displacement maps. Outer meniscus stroke is thicker and varies in
+  opacity, satellite drips added outside each ring.
+
+### Added
+
+- Four scattered viewport-fixed liquid stains (top-right partial arc,
+  bottom-left drip splotch, mid-right secondary ring, top-left accent
+  splash) so the page surface feels marked-up beyond just the sidebars.
+
 ## [0.1.0] - 2026-04-22
 
 ### Added

@@ -122,25 +122,26 @@
   --h6-color: var(--bca-ink-faint);
 }
 
-/* H1 — big condensed title block, always uppercase, tight tracking */
+/* H1 — big condensed title block, always uppercase, tight tracking.
+   No underline: the oxblood + Big Shoulders 900 + uppercase reads strong
+   enough on its own, and any underline (border or text-decoration)
+   paints per visual line when the heading wraps in Live Preview. */
 .markdown-rendered h1,
 .cm-header-1 {
   text-transform: uppercase;
   letter-spacing: -0.01em;
-  border-bottom: 3px double var(--bca-red);
-  padding-bottom: 0.15em;
   margin-bottom: 0.5em;
+  line-height: 1.1;
 }
 
-/* H2 — underlined section heading, like "THE PITCH", "TONE & FEEL" */
+/* H2 — section heading. Same reasoning as H1 — drop the underline. */
 .markdown-rendered h2,
 .cm-header-2 {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--bca-red) !important;
-  border-bottom: 2px solid var(--bca-ink);
-  padding-bottom: 0.1em;
   margin-top: 1.6em;
+  line-height: 1.2;
 }
 
 /* H3 — smaller uppercase with letter-spacing */
@@ -498,50 +499,135 @@ body,
   position: relative;
 }
 
-/* Left sidebar — big coffee ring near the bottom */
+/* ---------- Stain shapes ----------
+   Three reusable SVGs, each warped by feTurbulence + feDisplacementMap so
+   the rings/blobs are irregular and "fat" rather than geometric. Tuned to
+   look like real coffee/liquid pooling: thicker dark outer meniscus, a
+   lighter washy interior, and a couple of satellite drops outside.
+*/
+
+/* Left sidebar — big organic ring near the bottom */
 .workspace-split.mod-left-split::before {
   content: "";
   position: absolute;
   bottom: 60px;
   left: 24px;
-  width: 150px;
-  height: 150px;
+  width: 170px;
+  height: 170px;
   pointer-events: none;
   z-index: 100;
-  opacity: 0.45;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g transform='rotate(-12 100 100)'><ellipse cx='100' cy='100' rx='72' ry='68' fill='none' stroke='%235a2d0e' stroke-width='4' stroke-dasharray='180 40 90 30 60 20'/><ellipse cx='100' cy='100' rx='66' ry='62' fill='none' stroke='%235a2d0e' stroke-width='2' stroke-dasharray='50 15 120 25 80 40' opacity='0.7'/><ellipse cx='100' cy='100' rx='62' ry='58' fill='%235a2d0e' opacity='0.18'/></g></svg>");
+  opacity: 0.55;
+  transform: rotate(-12deg);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><filter id='w' x='-20%25' y='-20%25' width='140%25' height='140%25'><feTurbulence type='fractalNoise' baseFrequency='0.025' numOctaves='2' seed='3'/><feDisplacementMap in='SourceGraphic' scale='16'/></filter></defs><g filter='url(%23w)' fill='none' stroke-linecap='round'><ellipse cx='100' cy='100' rx='70' ry='66' stroke='%235a2d0e' stroke-width='10' opacity='0.85'/><ellipse cx='100' cy='100' rx='66' ry='62' stroke='%234a2608' stroke-width='5' opacity='0.55'/><ellipse cx='100' cy='100' rx='62' ry='58' fill='%235a2d0e' stroke='none' opacity='0.14'/></g><g filter='url(%23w)'><circle cx='28' cy='150' r='7' fill='%235a2d0e' opacity='0.45'/><circle cx='172' cy='38' r='5' fill='%234a2608' opacity='0.40'/><circle cx='160' cy='170' r='3' fill='%235a2d0e' opacity='0.35'/></g></svg>");
   background-repeat: no-repeat;
   background-size: contain;
 }
 
-/* Left sidebar — smaller partial ring in the bottom-right corner */
+/* Left sidebar — drip splotch in the bottom-right corner */
 .workspace-split.mod-left-split::after {
   content: "";
   position: absolute;
   bottom: 18px;
   right: 16px;
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
   pointer-events: none;
   z-index: 100;
-  opacity: 0.4;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g transform='rotate(22 100 100)'><path d='M 40 100 A 60 58 0 1 1 160 100' fill='none' stroke='%234a2608' stroke-width='5' stroke-dasharray='80 20 40 15 30 10'/><ellipse cx='100' cy='102' rx='55' ry='52' fill='%234a2608' opacity='0.15'/></g></svg>");
+  opacity: 0.45;
+  transform: rotate(22deg);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><filter id='w' x='-30%25' y='-30%25' width='160%25' height='160%25'><feTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='3' seed='5'/><feDisplacementMap in='SourceGraphic' scale='20'/></filter></defs><g filter='url(%23w)'><ellipse cx='100' cy='100' rx='58' ry='50' fill='%235a2d0e' opacity='0.32'/><ellipse cx='98' cy='102' rx='42' ry='36' fill='%234a2608' opacity='0.42'/><circle cx='40' cy='60' r='10' fill='%235a2d0e' opacity='0.38'/><circle cx='160' cy='150' r='8' fill='%234a2608' opacity='0.42'/><circle cx='30' cy='140' r='5' fill='%235a2d0e' opacity='0.32'/></g></svg>");
   background-repeat: no-repeat;
   background-size: contain;
 }
 
-/* Right sidebar — coffee ring near the bottom */
+/* Right sidebar — partial arc / broken ring */
 .workspace-split.mod-right-split::before {
   content: "";
   position: absolute;
   bottom: 180px;
   right: 20px;
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   pointer-events: none;
   z-index: 100;
-  opacity: 0.4;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g transform='rotate(15 100 100)'><ellipse cx='100' cy='100' rx='68' ry='64' fill='none' stroke='%234a2608' stroke-width='4' stroke-dasharray='120 30 60 20 90 25'/><ellipse cx='100' cy='100' rx='62' ry='58' fill='none' stroke='%234a2608' stroke-width='2' stroke-dasharray='30 10 100 20' opacity='0.7'/><ellipse cx='100' cy='100' rx='58' ry='55' fill='%234a2608' opacity='0.15'/></g></svg>");
+  opacity: 0.5;
+  transform: rotate(15deg);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><filter id='w' x='-20%25' y='-20%25' width='140%25' height='140%25'><feTurbulence type='fractalNoise' baseFrequency='0.03' numOctaves='2' seed='9'/><feDisplacementMap in='SourceGraphic' scale='14'/></filter></defs><g filter='url(%23w)' fill='none' stroke-linecap='round'><path d='M 40 100 A 60 56 0 1 1 160 100' stroke='%234a2608' stroke-width='11' opacity='0.78'/><path d='M 50 108 A 50 48 0 1 1 150 108' stroke='%235a2d0e' stroke-width='4' opacity='0.55'/></g><g filter='url(%23w)'><ellipse cx='100' cy='100' rx='54' ry='48' fill='%234a2608' opacity='0.12'/><circle cx='30' cy='135' r='6' fill='%234a2608' opacity='0.45'/><circle cx='170' cy='130' r='4' fill='%235a2d0e' opacity='0.40'/></g></svg>");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* ---------- Scattered viewport-fixed liquid stains ----------
+   Anchored to the viewport (position: fixed) so they sit on the desk
+   under the page rather than scrolling with content. Each pseudo on
+   a different host so we get four stains without collisions, all with
+   the same z-index/pointer-events pattern as the sidebar stains.
+*/
+
+/* Top-right partial arc — coffee mug placed at the corner */
+body::before {
+  content: "";
+  position: fixed;
+  top: 96px;
+  right: 60px;
+  width: 130px;
+  height: 130px;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.30;
+  transform: rotate(-22deg);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><filter id='w' x='-20%25' y='-20%25' width='140%25' height='140%25'><feTurbulence type='fractalNoise' baseFrequency='0.028' numOctaves='2' seed='17'/><feDisplacementMap in='SourceGraphic' scale='15'/></filter></defs><g filter='url(%23w)' fill='none' stroke-linecap='round'><path d='M 35 105 A 62 58 0 1 1 165 105' stroke='%234a2608' stroke-width='10' opacity='0.75'/><path d='M 48 112 A 50 46 0 1 1 152 112' stroke='%235a2d0e' stroke-width='4' opacity='0.55'/></g><g filter='url(%23w)'><ellipse cx='100' cy='105' rx='52' ry='46' fill='%234a2608' opacity='0.10'/><circle cx='28' cy='150' r='5' fill='%234a2608' opacity='0.45'/></g></svg>");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* Bottom-left drip splotch — splatter near the corner */
+body::after {
+  content: "";
+  position: fixed;
+  bottom: 110px;
+  left: 64px;
+  width: 100px;
+  height: 100px;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.28;
+  transform: rotate(35deg);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><filter id='w' x='-30%25' y='-30%25' width='160%25' height='160%25'><feTurbulence type='fractalNoise' baseFrequency='0.045' numOctaves='3' seed='23'/><feDisplacementMap in='SourceGraphic' scale='22'/></filter></defs><g filter='url(%23w)'><ellipse cx='100' cy='100' rx='52' ry='46' fill='%235a2d0e' opacity='0.34'/><ellipse cx='100' cy='100' rx='38' ry='32' fill='%234a2608' opacity='0.40'/><circle cx='38' cy='62' r='9' fill='%235a2d0e' opacity='0.36'/><circle cx='162' cy='148' r='7' fill='%234a2608' opacity='0.40'/><circle cx='52' cy='160' r='4' fill='%235a2d0e' opacity='0.32'/></g></svg>");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* Mid-right small ring — secondary mug mark */
+.app-container::before {
+  content: "";
+  position: fixed;
+  top: 42%;
+  right: 18px;
+  width: 78px;
+  height: 78px;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.25;
+  transform: rotate(8deg);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><filter id='w' x='-20%25' y='-20%25' width='140%25' height='140%25'><feTurbulence type='fractalNoise' baseFrequency='0.032' numOctaves='2' seed='41'/><feDisplacementMap in='SourceGraphic' scale='13'/></filter></defs><g filter='url(%23w)' fill='none' stroke-linecap='round'><ellipse cx='100' cy='100' rx='68' ry='62' stroke='%235a2d0e' stroke-width='9' opacity='0.80'/><ellipse cx='100' cy='100' rx='62' ry='56' stroke='%234a2608' stroke-width='4' opacity='0.50'/><ellipse cx='100' cy='100' rx='58' ry='52' fill='%235a2d0e' stroke='none' opacity='0.12'/></g></svg>");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* Top-left tiny drip — accent splash near the title bar */
+.app-container::after {
+  content: "";
+  position: fixed;
+  top: 140px;
+  left: 22%;
+  width: 60px;
+  height: 60px;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.22;
+  transform: rotate(-48deg);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><filter id='w' x='-30%25' y='-30%25' width='160%25' height='160%25'><feTurbulence type='fractalNoise' baseFrequency='0.05' numOctaves='3' seed='29'/><feDisplacementMap in='SourceGraphic' scale='24'/></filter></defs><g filter='url(%23w)'><ellipse cx='100' cy='100' rx='44' ry='38' fill='%235a2d0e' opacity='0.38'/><circle cx='40' cy='60' r='8' fill='%234a2608' opacity='0.42'/><circle cx='160' cy='150' r='6' fill='%235a2d0e' opacity='0.38'/></g></svg>");
   background-repeat: no-repeat;
   background-size: contain;
 }
